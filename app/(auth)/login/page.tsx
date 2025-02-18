@@ -1,6 +1,12 @@
+import { getServerSession } from "next-auth";
 import { TabsForms } from "./components/TabsForms";
+import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await getServerSession();
+  if (session) {
+    redirect("/");
+  }
   return (
     <div className="grid h-full max-h-screen overflow-hidden">
       <div className="flex justify-center h-full">

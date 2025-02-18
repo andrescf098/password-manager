@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   email: z.string().min(2).max(50),
@@ -30,9 +32,24 @@ export function LoginForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const response = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    });
+    if (response?.status === 200) {
+      toast({
+        title: "Logged in",
+      });
+      router.push("/");
+    } else {
+      toast({
+        title: "Error logging in",
+        variant: "destructive",
+      });
+    }
+  };
   return (
     <Form {...form}>
       <form

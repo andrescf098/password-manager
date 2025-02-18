@@ -30,8 +30,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { FormAddElementProps } from "./FormAddElement.type";
 
-export function FormAddElement() {
+export function FormAddElement(prop: FormAddElementProps) {
+  const { userId } = prop;
+  console.log(userId);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -45,7 +48,7 @@ export function FormAddElement() {
       password: "",
       urlWebsite: "",
       note: "",
-      userId: "",
+      userId,
     },
   });
   const generateNewPassword = () => {
@@ -65,7 +68,6 @@ export function FormAddElement() {
         password: "",
         urlWebsite: "",
         note: "",
-        userId: "",
       });
       router.refresh();
     } catch {
