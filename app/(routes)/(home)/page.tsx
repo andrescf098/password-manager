@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { HeaderMain } from "./components/HeaderMain";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
+import { DataBody } from "./components/DataBody";
 
 export default async function Home() {
   const session = await getServerSession();
@@ -24,6 +25,7 @@ export default async function Home() {
   return (
     <div>
       <HeaderMain userId={user?.id} />
+      <DataBody elements={user?.elements} />
     </div>
   );
 }

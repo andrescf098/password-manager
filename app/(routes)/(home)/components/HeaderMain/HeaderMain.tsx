@@ -27,10 +27,10 @@ export function HeaderMain(props: HeaderMainProps) {
   const [text, setText] = useState("");
   const [isOpenDialog, setIsOpenDialog] = useState(false);
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
-  const closeDialogAndDropdown = () => {
-    setIsOpenDialog(false);
-    setIsOpenDropdown(false);
-  };
+  // const closeDialogAndDropdown = () => {
+  //   setIsOpenDialog(false);
+  //   setIsOpenDropdown(false);
+  // };
   const openDialog = (
     text: string,
     typeElement: "sesion" | "creditCard" | "idCard" | "folder" | ""
@@ -58,7 +58,7 @@ export function HeaderMain(props: HeaderMainProps) {
                     {dataHeaderMain.map(({ icon: Icon, typeElement, text }) => (
                       <Button
                         key={typeElement}
-                        className="justify-center"
+                        className="justify-start"
                         variant="ghost"
                         onClick={() => openDialog(text, typeElement)}
                       >
