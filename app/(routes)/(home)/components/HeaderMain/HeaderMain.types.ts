@@ -1,4 +1,4 @@
-type TypeElement = "" | "password" | "folder";
+type TypeElement = "" | "sesion" | "creditCard" | "idCard" | "folder";
 
 export type DataHeaderMainItemProps = {
   icon: React.ComponentType<{ className?: string }>;

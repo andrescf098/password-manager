@@ -33,14 +33,14 @@ import { useRouter } from "next/navigation";
 import { FormAddElementProps } from "./FormAddElement.type";
 
 export function FormAddElement(prop: FormAddElementProps) {
-  const { userId } = prop;
+  const { userId, typeElement } = prop;
   console.log(userId);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      typeElement: "",
+      typeElement,
       isFavourite: false,
       name: "",
       directory: "",
@@ -60,7 +60,7 @@ export function FormAddElement(prop: FormAddElementProps) {
       await axios.post("/api/items", values);
       toast({ title: "Elemento guardado correctamente" });
       form.reset({
-        typeElement: "",
+        typeElement,
         isFavourite: false,
         name: "",
         directory: "",
@@ -84,171 +84,145 @@ export function FormAddElement(prop: FormAddElementProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="md:grid-cols-2 gap-y-2 gap-x-4 grid"
+        className="grid gap-y-2 gap-x-4"
       >
-        <FormField
-          control={form.control}
-          name="typeElement"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>¿Qué tipo de elemento necesitas?</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+        <div className="md:grid-cols-2 gap-y-2 gap-x-4 grid">
+          <FormField
+            control={form.control}
+            name="urlWebsite"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Url website</FormLabel>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a directory for your password" />
-                  </SelectTrigger>
+                  <div className="relative">
+                    <Input {...field} />
+                    <Earth
+                      className="absolute top-3 right-2 cursor-pointer"
+                      size={18}
+                      onClick={updateUrl}
+                    />
+                  </div>
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value="Inicio de sesión">
-                    Inicio de sesión
-                  </SelectItem>
-                  <SelectItem value="Tarjeta de crédito">
-                    Tarjeta de crédito
-                  </SelectItem>
-                  <SelectItem value="Identidad">Identidad</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="isFavourite"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                ¿Quieres seleccionar tu contraseña como favorita?
-              </FormLabel>
-              <div className="flex flex-row items-start space-x-3 space-y-0 p-4">
+                <FormMessage />
+              </FormItem>
+            )}
+          ></FormField>
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
+                  <Input {...field} />
                 </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel>Marcar como favorito</FormLabel>
-                </div>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        ></FormField>
-        <FormField
-          control={form.control}
-          name="directory"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Directorio</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Elige el directorio" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="Social">Social</SelectItem>
-                  <SelectItem value="Arts">Arts</SelectItem>
-                  <SelectItem value="Shopping">Shopping</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="urlWebsite"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Url website</FormLabel>
-              <FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          ></FormField>
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nombre de usuario</FormLabel>
                 <div className="relative">
                   <Input {...field} />
-                  <Earth
-                    className="absolute top-3 right-2 cursor-pointer"
-                    size={18}
-                    onClick={updateUrl}
-                  />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        ></FormField>
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Usuario</FormLabel>
-              <div className="relative">
-                <Input {...field} />
-                <Copy
-                  className="absolute top-3 right-4 cursor-pointer"
-                  size={18}
-                  onClick={() => copyClipboard(field.value)}
-                />
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        ></FormField>
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="flex justify-between">
-                Password
-                <Shuffle
-                  className="cursor-pointer"
-                  size={15}
-                  onClick={generateNewPassword}
-                />
-              </FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <Input {...field} type={showPassword ? "text" : "password"} />
-                  <Eye
-                    className="absolute top-3 right-10 cursor-pointer"
-                    size={18}
-                    onClick={() => setShowPassword(!showPassword)}
-                  />
                   <Copy
-                    className="absolute top-3 right-2 cursor-pointer"
+                    className="absolute top-3 right-4 cursor-pointer"
                     size={18}
                     onClick={() => copyClipboard(field.value)}
                   />
                 </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        ></FormField>
-        <div>
-          <div className="text-slate-400 flex items-center justify-between text-sm">
-            Autentitación TOTP
-            <p className="px-3 bg-green-700 text-white rounded-lg text-xs mr-5">
-              Premium
-            </p>
-          </div>
-          <Input disabled />
+                <FormMessage />
+              </FormItem>
+            )}
+          ></FormField>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="flex justify-between p-[5px]">
+                  Password
+                  <Shuffle
+                    className="cursor-pointer"
+                    size={15}
+                    onClick={generateNewPassword}
+                  />
+                </FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <Input
+                      {...field}
+                      type={showPassword ? "text" : "password"}
+                    />
+                    <Eye
+                      className="absolute top-3 right-10 cursor-pointer"
+                      size={18}
+                      onClick={() => setShowPassword(!showPassword)}
+                    />
+                    <Copy
+                      className="absolute top-3 right-2 cursor-pointer"
+                      size={18}
+                      onClick={() => copyClipboard(field.value)}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          ></FormField>
+          <FormField
+            control={form.control}
+            name="directory"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Directorio</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Elige el directorio" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Social">Social</SelectItem>
+                    <SelectItem value="Arts">Arts</SelectItem>
+                    <SelectItem value="Shopping">Shopping</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="isFavourite"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  ¿Quieres seleccionar tu contraseña como favorita?
+                </FormLabel>
+                <div className="flex flex-row items-start space-x-3 space-y-0 p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Marcar como favorito</FormLabel>
+                  </div>
+                </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
+
         <FormField
           control={form.control}
           name="note"
