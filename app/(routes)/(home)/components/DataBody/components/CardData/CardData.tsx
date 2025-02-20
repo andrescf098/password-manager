@@ -15,7 +15,7 @@ export function CardData(props: CardDataProps) {
   const { name, username, password, urlWebsite } = props.element;
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <Card className="w-80">
+    <Card className="w-80 border-gray-300 shadow-slate-50">
       <CardHeader>
         <CardTitle>{name}</CardTitle>
         <CardDescription className="space-y-2">{urlWebsite}</CardDescription>

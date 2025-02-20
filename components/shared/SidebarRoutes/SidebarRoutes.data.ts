@@ -1,9 +1,7 @@
 import {
   CreditCard,
   Earth,
-  Landmark,
   LayoutList,
-  Lock,
   Settings,
   Star,
   UserPen,
@@ -43,18 +41,6 @@ export const dataSidebarConfiguration = [
         href: "/profile",
         icon: UserPen,
         premium: false,
-      },
-      {
-        item: "Security",
-        href: "#",
-        icon: Lock,
-        premium: true,
-      },
-      {
-        item: "Suscription",
-        href: "#",
-        icon: Landmark,
-        premium: true,
       },
     ],
   },

@@ -39,7 +39,7 @@ export function HeaderMain(props: HeaderMainProps) {
     setText(text);
   };
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center border-b border-gray-300 px-6 pb-6 ">
       <h1 className="text-xl md:text-2xl font-semibold">
         Todas las cajas fuertes
       </h1>
@@ -47,7 +47,7 @@ export function HeaderMain(props: HeaderMainProps) {
         <Dialog open={isOpenDialog} onOpenChange={setIsOpenDialog}>
           <DropdownMenu open={isOpenDropdown} onOpenChange={setIsOpenDropdown}>
             <DropdownMenuTrigger asChild>
-              <Button>
+              <Button className="duration-300 transition-al">
                 <Plus /> Agregar <ChevronDown />
               </Button>
             </DropdownMenuTrigger>

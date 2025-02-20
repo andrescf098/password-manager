@@ -24,10 +24,10 @@ export function SidebarRoutes() {
           key={title}
           className="w-full px-2"
         >
-          <AccordionItem value="item-1" className="border-b-0">
+          <AccordionItem value="item-1" className="border-b-0 ">
             <AccordionTrigger>
-              <div className="flex gap-2 items-center">
-                <div className="bg-blue-100/20 p-2 rounded-md">
+              <div className="flex gap-2 items-center ">
+                <div className="p-2 rounded-md">
                   <Icon size={20} />
                 </div>
                 {title}
@@ -38,7 +38,7 @@ export function SidebarRoutes() {
                 <div key={item}>
                   <Link
                     href={href}
-                    className="px-6 py-2 flex gap-2 items-center hover:bg-blue-100/20 transition-all rounded-md"
+                    className="px-6 py-2 flex gap-2 items-center hover:bg-gray-400 hover:text-white transition-all rounded-md"
                   >
                     <Icon size={20} />
                     {item}
@@ -64,30 +64,25 @@ export function SidebarRoutes() {
           <AccordionItem value="item-1" className="border-b-0">
             <AccordionTrigger>
               <div className="flex gap-2 items-center">
-                <div className="bg-blue-100/20 p-2 rounded-md">
+                <div className="p-2 rounded-md ">
                   <Icon size={20} />
                 </div>
                 {title}
               </div>
             </AccordionTrigger>
             <AccordionContent>
-              {children.map(({ item, href, icon: Icon, premium }) => (
+              {children.map(({ item, href, icon: Icon }) => (
                 <div
                   key={item}
-                  className="flex items-center justify-between mt-2 hover:bg-blue-100/20 duration-300 transition-all rounded-md pr-1"
+                  className="flex items-center justify-between mt-2 hover:bg-gray-400 hover:text-white duration-300 transition-all rounded-md pr-1"
                 >
                   <Link
                     href={href}
-                    className="px-6 py-2 flex gap-2 items-center"
+                    className="px-6 py-2 flex gap-2 items-center rounded-md"
                   >
                     <Icon size={20} />
                     {item}
                   </Link>
-                  {premium && (
-                    <span className="flex gap-2 text-xs px-2 py-2 bg-blue-400 rounded-md">
-                      Premium
-                    </span>
-                  )}
                 </div>
               ))}
             </AccordionContent>

@@ -23,7 +23,7 @@ export default async function Home() {
     return redirect("/");
   }
   return (
-    <div>
+    <div className="h-[calc(100vh-5.563rem)] ">
       <HeaderMain userId={user?.id} />
       <DataBody elements={user?.elements} />
     </div>

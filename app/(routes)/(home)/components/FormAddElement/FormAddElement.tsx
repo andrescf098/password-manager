@@ -34,7 +34,6 @@ import { FormAddElementProps } from "./FormAddElement.type";
 
 export function FormAddElement(prop: FormAddElementProps) {
   const { userId, typeElement } = prop;
-  console.log(userId);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
