@@ -7,15 +7,31 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Copy, Eye } from "lucide-react";
+import { Copy, EllipsisVertical, Eye, Pencil } from "lucide-react";
 import { useState } from "react";
 import { CardDataProps } from "./CardData.type";
+import { toast } from "@/hooks/use-toast";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 export function CardData(props: CardDataProps) {
   const { name, username, password, urlWebsite } = props.element;
   const [showPassword, setShowPassword] = useState(false);
+  const copyItemClipboard = (item: string, name: string) => {
+    navigator.clipboard.writeText(item);
+    toast({ title: `${name} copied to clipboard` });
+  };
+  const onEditElement = () => {
+    console.log("Edit element");
+  };
   return (
-    <Card className="w-80 border-gray-300 shadow-slate-50">
+    <Card className="relative w-80 border-gray-300 shadow-slate-50">
       <CardHeader>
         <CardTitle>{name}</CardTitle>
         <CardDescription className="space-y-2">{urlWebsite}</CardDescription>
@@ -32,7 +48,7 @@ export function CardData(props: CardDataProps) {
                 <Copy
                   className="absolute top-3 right-4 cursor-pointer"
                   size={18}
-                  onClick={() => console.log("copy")}
+                  onClick={() => copyItemClipboard(username ?? "", "Username")}
                 />
               </div>
               <div className="relative">
@@ -48,13 +64,32 @@ export function CardData(props: CardDataProps) {
                 <Copy
                   className="absolute top-3 right-4 cursor-pointer"
                   size={18}
-                  onClick={() => console.log("copy")}
+                  onClick={() => copyItemClipboard(password ?? "", "Password")}
                 />
               </div>
             </div>
           </div>
         </form>
       </CardContent>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="absolute top-4 right-4 cursor-pointer h-8 w-8 p-0">
+          <Button variant="ghost">
+            <EllipsisVertical />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel className="text-center">
+            Acciones
+          </DropdownMenuLabel>
+          <DropdownMenuItem
+            onClick={onEditElement}
+            className="flex justify-around hover:bg-gray-400 hover:text-white cursor-pointer"
+          >
+            <Pencil />
+            Editar
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </Card>
   );
 }
