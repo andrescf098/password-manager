@@ -13,7 +13,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, FolderPlus, Plus } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 import { dataHeaderMain } from "./HeaderMain.data";
 import { useState } from "react";
 import { FormAddElement } from "../FormAddElement";
@@ -39,7 +39,7 @@ export function HeaderMain(props: HeaderMainProps) {
     setText(text);
   };
   return (
-    <div className="flex justify-between items-center border-b border-gray-300 px-6 pb-6 ">
+    <div className="flex justify-between items-center border-b border-gray-00 px-6 pb-6 ">
       <h1 className="text-xl md:text-2xl font-semibold">
         Todas las cajas fuertes
       </h1>
@@ -47,7 +47,7 @@ export function HeaderMain(props: HeaderMainProps) {
         <Dialog open={isOpenDialog} onOpenChange={setIsOpenDialog}>
           <DropdownMenu open={isOpenDropdown} onOpenChange={setIsOpenDropdown}>
             <DropdownMenuTrigger asChild>
-              <Button className="duration-300 transition-al">
+              <Button className="duration-300 transition-al bg-green-500 hover:bg-green-600">
                 <Plus /> Agregar <ChevronDown />
               </Button>
             </DropdownMenuTrigger>
@@ -80,11 +80,11 @@ export function HeaderMain(props: HeaderMainProps) {
             </DialogHeader>
           </DialogContent>
         </Dialog>
-        <Dialog>
+        {/* <Dialog>
           <Button className="bg-white text-black border hover:bg-gray-400 hover:text-white border-slate-300 px-3">
             <FolderPlus />
           </Button>
-        </Dialog>
+        </Dialog> */}
       </div>
     </div>
   );

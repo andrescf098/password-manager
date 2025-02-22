@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Copy, EllipsisVertical, Eye, Pencil } from "lucide-react";
+import { Copy, EllipsisVertical, Eye, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { CardDataProps } from "./CardData.type";
 import { toast } from "@/hooks/use-toast";
@@ -23,12 +23,13 @@ import { Button } from "@/components/ui/button";
 export function CardData(props: CardDataProps) {
   const { name, username, password, urlWebsite } = props.element;
   const [showPassword, setShowPassword] = useState(false);
+
   const copyItemClipboard = (item: string, name: string) => {
     navigator.clipboard.writeText(item);
     toast({ title: `${name} copied to clipboard` });
   };
-  const onEditElement = () => {
-    console.log("Edit element");
+  const editElement = () => {
+    window.location.href = `/element/${props.element.id}`;
   };
   return (
     <Card className="relative w-80 border-gray-300 shadow-slate-50">
@@ -43,6 +44,7 @@ export function CardData(props: CardDataProps) {
               <div className="relative">
                 <Input
                   value={username ?? ""}
+                  readOnly
                   placeholder="Name of your project"
                 />
                 <Copy
@@ -54,6 +56,7 @@ export function CardData(props: CardDataProps) {
               <div className="relative">
                 <Input
                   value={password ?? ""}
+                  readOnly
                   type={showPassword ? "text" : "password"}
                 />
                 <Eye
@@ -72,7 +75,10 @@ export function CardData(props: CardDataProps) {
         </form>
       </CardContent>
       <DropdownMenu>
-        <DropdownMenuTrigger className="absolute top-4 right-4 cursor-pointer h-8 w-8 p-0">
+        <DropdownMenuTrigger
+          asChild
+          className="absolute top-4 right-4 cursor-pointer h-8 w-8 p-0"
+        >
           <Button variant="ghost">
             <EllipsisVertical />
           </Button>
@@ -81,12 +87,16 @@ export function CardData(props: CardDataProps) {
           <DropdownMenuLabel className="text-center">
             Acciones
           </DropdownMenuLabel>
-          <DropdownMenuItem
-            onClick={onEditElement}
-            className="flex justify-around hover:bg-gray-400 hover:text-white cursor-pointer"
+          <Button
+            onClick={editElement}
+            className="w-full flex justify-around hover:bg-gray-400 hover:text-white cursor-pointer"
           >
             <Pencil />
             Editar
+          </Button>
+          <DropdownMenuItem className="flex justify-around hover:bg-gray-400 hover:text-white cursor-pointer">
+            <Trash2 />
+            Eliminar
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

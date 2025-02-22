@@ -36,7 +36,7 @@ export function DataBody(props: DataBodyProps) {
         <Input
           placeholder="Buscar"
           className="w-80 pl-8"
-          onChange={(e) => searchElements(e)}
+          onChange={(event) => searchElements(event)}
         />
       </div>
       <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-items-center gap-4 p-6">
