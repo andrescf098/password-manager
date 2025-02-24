@@ -17,10 +17,12 @@ export default async function EditElement({
   });
   if (!element) return redirect("/");
   return (
-    <div className="p-4">
-      <h1>Editar elemento</h1>
-      <div>
-        <FormEditElement dataElement={element} />
+    <div className="h-dvh gird place-items-center">
+      <div className=" sm:max-w-[825px] border border-gray-300 p-4 rounded-md">
+        <h1>Editar elemento</h1>
+        <div>
+          <FormEditElement dataElement={element} />
+        </div>
       </div>
     </div>
   );

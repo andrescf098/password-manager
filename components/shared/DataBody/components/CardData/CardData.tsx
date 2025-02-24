@@ -14,7 +14,6 @@ import { toast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -83,7 +82,7 @@ export function CardData(props: CardDataProps) {
             <EllipsisVertical />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="w-30 flex flex-col space-y-1">
           <DropdownMenuLabel className="text-center">
             Acciones
           </DropdownMenuLabel>
@@ -94,10 +93,10 @@ export function CardData(props: CardDataProps) {
             <Pencil />
             Editar
           </Button>
-          <DropdownMenuItem className="flex justify-around hover:bg-gray-400 hover:text-white cursor-pointer">
+          <Button className="w-full flex justify-around hover:bg-gray-400 hover:text-white cursor-pointer">
             <Trash2 />
             Eliminar
-          </DropdownMenuItem>
+          </Button>
         </DropdownMenuContent>
       </DropdownMenu>
     </Card>

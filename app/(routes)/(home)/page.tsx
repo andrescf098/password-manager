@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { HeaderMain } from "./components/HeaderMain";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { DataBody } from "./components/DataBody";
+import { DataBody } from "@/components/shared/DataBody";
 
 export default async function Home() {
   const session = await getServerSession();

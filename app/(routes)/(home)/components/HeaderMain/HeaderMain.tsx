@@ -39,7 +39,7 @@ export function HeaderMain(props: HeaderMainProps) {
     setText(text);
   };
   return (
-    <div className="flex justify-between items-center border-b border-gray-00 px-6 pb-6 ">
+    <div className="flex justify-between items-center border-b border-gray-300 px-6 pb-6">
       <h1 className="text-xl md:text-2xl font-semibold">
         Todas las cajas fuertes
       </h1>

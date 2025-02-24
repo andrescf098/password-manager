@@ -9,21 +9,21 @@ import {
 
 export const dataSidebarElements = [
   {
-    title: "Elements",
+    title: "Elementos",
     icon: LayoutList,
     children: [
       {
-        item: "Favourites",
+        item: "Favoritos",
         href: "/favourites",
         icon: Star,
       },
       {
-        item: "Logins",
-        href: "/logins-elements",
+        item: "Inicios de sesión",
+        href: "/sessions",
         icon: Earth,
       },
       {
-        item: "Credit Cards",
+        item: "Tarjetas de crédito",
         href: "/credit-cards",
         icon: CreditCard,
       },
@@ -37,7 +37,7 @@ export const dataSidebarConfiguration = [
     icon: Settings,
     children: [
       {
-        item: "Profile",
+        item: "Perfil",
         href: "/profile",
         icon: UserPen,
         premium: false,

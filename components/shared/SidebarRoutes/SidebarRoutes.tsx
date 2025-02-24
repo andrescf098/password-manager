@@ -16,7 +16,7 @@ import {
 export function SidebarRoutes() {
   return (
     <div>
-      <SingleItem href="/" icon={House} label="HomePage" />
+      <SingleItem href="/" icon={House} label="Inicio" />
       {dataSidebarElements.map(({ title, icon: Icon, children }) => (
         <Accordion
           type="single"
@@ -51,7 +51,7 @@ export function SidebarRoutes() {
       ))}
       <SingleItem
         href="/generator"
-        label="Generator"
+        label="Generador"
         icon={RectangleEllipsis}
       />
       {dataSidebarConfiguration.map(({ title, icon: Icon, children }) => (
@@ -91,7 +91,7 @@ export function SidebarRoutes() {
       ))}
       <SingleItem
         href="#"
-        label="Logout"
+        label="Cerrar sesión"
         icon={DoorClosed}
         onClick={() => console.log("Close session")}
       />
