@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 export function UserGenerator(props: UserGeneratorProps) {
   const { setUserTypeSelected } = props;
   return (
-    <div className="p-4 bg-slate-100 rounded-md shadow-md">
+    <div className="p-4 border border-gray-300 rounded-md">
       <p className="mb-4 text-slate-500">¿Qué quieres generar?</p>
       <RadioGroup
         defaultValue="username"
@@ -14,10 +14,6 @@ export function UserGenerator(props: UserGeneratorProps) {
         <div className="flex items-center space-x-2">
           <RadioGroupItem value="username" id="r2" />
           <Label htmlFor="r2">Username</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="email" id="r2" />
-          <Label htmlFor="r2">Email</Label>
         </div>
       </RadioGroup>
     </div>
