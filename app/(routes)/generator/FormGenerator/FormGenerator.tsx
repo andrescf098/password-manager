@@ -6,6 +6,7 @@ import { copyClipboard } from "@/lib/copyClipboard";
 import { Copy, Shuffle } from "lucide-react";
 import { useState } from "react";
 import { PasswordGenerator } from "../PasswordGenerator";
+import { UserGenerator } from "../UserGenerator";
 
 export function FormGenerator() {
   const [itemValueInput, setItemValueInput] = useState("");
@@ -16,7 +17,7 @@ export function FormGenerator() {
   const [isSpecialCharSelected, setIsSpecialCharSelected] = useState(true);
   const [isNumberSelected, setIsNumberSelected] = useState(true);
   const [selectedValue, setSelectedValue] = useState<"password" | "user" | "">(
-    "password"
+    "password",
   );
   return (
     <div className="mt-5 max-w-2xl">
@@ -58,7 +59,7 @@ export function FormGenerator() {
           setIsNumberSelected={setIsNumberSelected}
         />
       ) : (
-        <div>UserPassword</div>
+        <UserGenerator setUserTypeSelected={setuserTypeSelected} />
       )}
     </div>
   );
