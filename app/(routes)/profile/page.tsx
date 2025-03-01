@@ -14,7 +14,9 @@ export default async function ProfilePage() {
   if (!userdb) redirect("/");
   return (
     <div className="px-6">
-      <h1 className="text-xl">Detalles del perfil</h1>
+      <h1 className="text-xl md:text-2xl font-semibold pb-6">
+        Detalles del perfil
+      </h1>
       <FormProfile user={userdb} />
     </div>
   );
