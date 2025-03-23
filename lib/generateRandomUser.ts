@@ -23,7 +23,7 @@ export const generateRandomUsername = (length = 8) => {
     "Falcon",
   ];
 
-  const randomItem = (array: any) =>
+  const randomItem = (array: string[]) =>
     array[Math.floor(Math.random() * array.length)];
   let username = "";
   username += randomItem(adjectives);
