@@ -11,14 +11,15 @@ import { generateRandomUsername } from "@/lib/generateRandomUser";
 
 export function FormGenerator() {
   const [itemValueInput, setItemValueInput] = useState("");
-  const [userTypeSelected, setuserTypeSelected] = useState("username");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [userTypeSelected, setUserTypeSelected] = useState("username");
   const [lengthPassword, setLengthPassword] = useState(11);
   const [isMayusSelected, setIsMayusSelected] = useState(true);
   const [isMinusSelected, setIsMinusSelected] = useState(true);
   const [isNumberSelected, setIsNumberSelected] = useState(true);
   const [isSpecialCharSelected, setIsSpecialCharSelected] = useState(true);
   const [selectedValue, setSelectedValue] = useState<"password" | "user" | "">(
-    "password",
+    "password"
   );
   useEffect(() => {
     if (selectedValue === "password") {

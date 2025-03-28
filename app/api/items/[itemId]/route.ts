@@ -1,23 +1,21 @@
 import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
-  {
-    params,
-  }: {
-    params: {
-      itemId: string;
-    };
-  }
+  req: NextRequest,
+  { params }: { params: { itemId: string } }
 ) {
   try {
-    const { itemId } = params;
-    if (!itemId) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+    // const { itemId } = params;
+    // if (!itemId) {
+    //   return new NextResponse("Unauthorized", { status: 401 });
+    // }
+    // const element = await db.element.findUnique({
+    //   where: { id: itemId },
+    // });
+    // return NextResponse.json(element);
     const element = await db.element.findUnique({
-      where: { id: itemId },
+      where: { id: params.itemId },
     });
     return NextResponse.json(element);
   } catch {
@@ -26,14 +24,8 @@ export async function GET(
 }
 
 export async function PATCH(
-  req: Request,
-  {
-    params,
-  }: {
-    params: {
-      itemId: string;
-    };
-  }
+  req: NextRequest,
+  { params }: { params: { itemId: string } }
 ) {
   try {
     const { itemId } = params;

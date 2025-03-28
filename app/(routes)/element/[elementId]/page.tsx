@@ -9,13 +9,15 @@ export default async function EditElement({
 }: {
   params: { elementId: string };
 }) {
-  const { elementId } = await params;
   const session = await getServerSession();
-  if (!session || !session.user?.email) return redirect("/");
+  if (!session?.user?.email) redirect("/");
+
   const element = await db.element.findUnique({
-    where: { id: elementId },
+    where: { id: params.elementId },
   });
-  if (!element) return redirect("/");
+
+  if (!element) redirect("/");
+
   return (
     <div className="h-dvh gird place-items-center">
       <div className=" sm:max-w-[825px] border border-gray-300 p-4 rounded-md">
